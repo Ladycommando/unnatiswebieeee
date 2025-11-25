@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unnati Singh - Creative Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;600;700&family=Caveat:wght@400;700&family=Dancing+Script:wght@400;700&display=swap');
+        
+        :root {
+            --primary-pink: #FF69B4;
+            --light-pink: #FFB6C1;
+            --purple: #DDA0DD;
+            --blue: #B0E0E6;
+            --text-dark: #333;
+            --text-medium: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #FFE5E5 0%, #E0BBE4 25%, #B4E4FF 50%, #FFDEE2 75%, #D4F1F4 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            overflow-x: hidden;
+            cursor: none;
+            min-height: 100vh;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                cursor: default;
+            }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .cursor {
+            width: clamp(25px, 3vw, 35px);
+            height: clamp(25px, 3vw, 35px);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, background 0.3s ease;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.6) 0%, rgba(255, 182, 193, 0.3) 50%, transparent 70%);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.8), 0 0 50px rgba(255, 182, 193, 0.5);
+            mix-blend-mode: screen;
+        }
+        
+        .cursor::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #FF69B4;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 1);
+        }
+        
+        .cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(255, 105, 180, 0.6);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 0.5;
+            }
+        }
+        
+        .cursor-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 105, 180, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            animation: fade-out 0.5s ease-out forwards;
+        }
+        
+        @keyframes fade-out {
+            to {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .cursor, .cursor-trail {
+                display: none;
+            }
+        }
+        
+        .bow {
+            position: fixed;
+            font-size: clamp(30px, 4vw, 50px);
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(1rem, 3vw, 2rem);
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        
+        .welcome-section {
+            text-align: center;
+            padding: clamp(2rem, 8vw, 4rem) clamp(1rem, 3vw, 2rem);
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .welcome-title {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(1.8rem, 6vw, 4rem);
+            color: var(--primary-pink);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+            margin-bottom: clamp(1rem, 3vw, 2rem);
+            animation: bounce 2s ease infinite;
+            word-wrap: break-word;
+            line-height: 1.3;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .flower-emoji {
+            display: inline-block;
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            animation: rotate 3s linear infinite;
+            margin: 0 clamp(0.3rem, 1vw, 1rem);
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .video-container {
+            display: none;
+        }
+        
+        .intro-section {
+            text-align: center;
+            padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+        }
+        
+        .name {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, #FF69B4, #FFB6C1, #DDA0DD, #B0E0E6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: breathe 3s ease-in-out infinite;
+            margin: clamp(1rem, 3vw, 2rem) 0;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+        
+        .greeting {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            color: #FF1493;
+            margin-bottom: clamp(0.8rem, 2vw, 1.2rem);
+        }
+        
+        .tagline {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #9370DB;
+            font-weight: 600;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(1rem, 3vw, 1.5rem);
+            padding: clamp(1.5rem, 4vw, 2.5rem) clamp(0.5rem, 2vw, 1rem);
+            width: 100%;
+        }
+        
+        .skill-box {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            padding: clamp(1.2rem, 3vw, 1.8rem) clamp(1.5rem, 4vw, 3rem);
+            border-radius: clamp(15px, 3vw, 25px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: min(350px, 95%);
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+        }
+        
+        .skill-box.glass-active {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15),
+                        inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+                        inset 0 -1px 0 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-8px) scale(1.03);
+        }
+        
+        .skill-box:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(255, 105, 180, 0.25);
+            cursor: pointer;
+        }
+        
+        .skill-box:active {
+            transform: scale(0.98);
+        }
+        
+        .skill-icon {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: clamp(0.8rem, 2vw, 1rem);
+        }
+        
+        .skill-title {
+            font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+            font-weight: 700;
+            color: var(--primary-pink);
+            margin-bottom: clamp(0.5rem, 1.5vw, 0.8rem);
+        }
+        
+        .skill-desc {
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+        
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: particle-explode 1s ease-out forwards;
+        }
+        
+        @keyframes particle-explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.6) 0%, transparent 70%);
+            transform: scale(0);
+            animation: ripple-effect 0.6s ease-out;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple-effect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .connect-section {
+            text-align: center;
+            padding: clamp(2rem, 6vw, 4rem) clamp(1rem, 3vw, 2rem);
+            margin-top: clamp(1.5rem, 4vw, 2.5rem);
+        }
+        
+        .connect-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 300;
+            color: var(--primary-pink);
+            margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(1rem, 3vw, 2.5rem);
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(0.6rem, 2vw, 1rem);
+            background: rgba(255, 255, 255, 0.8);
+            padding: clamp(0.9rem, 2.5vw, 1.3rem) clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: 50px;
+            text-decoration: none;
+            color: #FF1493;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            white-space: nowrap;
+            min-width: min-content;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        .social-icon {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+        }
+        
+        .signature {
+            text-align: center;
+            padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: #000;
+            margin-top: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.6;
+        }
+        
+        /* Tablet Optimizations */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .skill-box {
+                width: min(400px, 85%);
+            }
+            
+            .social-links {
+                gap: 2rem;
+            }
+        }
+        
+        /* Small Mobile Optimizations */
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .welcome-title {
+                padding: 0 0.5rem;
+            }
+            
+            .skill-box {
+                width: 92%;
+            }
+            
+            .social-link {
+                width: calc(100% - 2rem);
+                max-width: 300px;
+            }
+        }
+        
+        /* Extra Small Screens */
+        @media (max-width: 360px) {
+            html {
+                font-size: 13px;
+            }
+            
+            .container {
+                padding: 0.8rem;
+            }
+        }
+        
+        /* Large Screens */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1400px;
+            }
+        }
+        
+        /* Landscape Mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .welcome-section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .intro-section {
+                padding: 1rem;
+            }
+            
+            .skill-box {
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    
+    <div class="container">
+        <div class="welcome-section">
+            <h1 class="welcome-title">
+                <span class="flower-emoji">🌸</span>
+                Welcome to My Webie
+                <span class="flower-emoji">🌸</span>
+            </h1>
+        </div>
+        
+        <div class="intro-section">
+            <p class="greeting">Hey Boogies! 👋</p>
+            <h2 class="name">UNNATI SINGH</h2>
+            <p class="tagline">Exploring life through creative ways ✨</p>
+        </div>
+        
+        <div class="skills-container">
+            <div class="skill-box">
+                <div class="skill-icon">📱</div>
+                <div class="skill-title">Reel Creator</div>
+                <div class="skill-desc">Crafting engaging content that tells stories</div>
+            </div>
+            
+            <div class="skill-box">
+                <div class="skill-icon">👗</div>
+                <div class="skill-title">Fashion Model</div>
+                <div class="skill-desc">Bringing designs to life on the runway</div>
+            </div>
+            
+            <div class="skill-box">
+                <div class="skill-icon">✨</div>
+                <div class="skill-title">Fashion Designer</div>
+                <div class="skill-desc">Creating stunning collections for fashion shows</div>
+            </div>
+            
+            <div class="skill-box">
+                <div class="skill-icon">🎨</div>
+                <div class="skill-title">Artist</div>
+                <div class="skill-desc">Expressing emotions through drawings and paintings</div>
+            </div>
+            
+            <div class="skill-box">
+                <div class="skill-icon">✂️</div>
+                <div class="skill-title">Art & Craft Expert</div>
+                <div class="skill-desc">Turning imagination into beautiful handmade creations</div>
+            </div>
+            
+            <div class="skill-box">
+                <div class="skill-icon">👩‍🍳</div>
+                <div class="skill-title">Culinary Artist</div>
+                <div class="skill-desc">Cooking up delicious masterpieces in the kitchen</div>
+            </div>
+            
+            <div class="skill-box">
+                <div class="skill-icon">💻</div>
+                <div class="skill-title">Website Designer</div>
+                <div class="skill-desc">Designing beautiful digital experiences</div>
+            </div>
+        </div>
+        
+        <div class="connect-section">
+            <h3 class="connect-title">Let's Connect</h3>
+            <div class="social-links">
+                <a href="https://www.instagram.com/direct/t/_warrior2006" class="social-link" target="_blank">
+                    <span class="social-icon">📸</span>
+                    <span>Instagram</span>
+                </a>
+                <a href="mailto:uunicolo7560@gmail.com" class="social-link">
+                    <span class="social-icon">✉️</span>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="signature">
+            MADE WITH 💖 BY UNNATI SINGH
+        </div>
+    </div>
+    
+    <script>
+        // Custom Cursor with Effects (Desktop only)
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        
+        if (window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                // Create trail effect
+                if (Math.random() > 0.7) {
+                    const trail = document.createElement('div');
+                    trail.className = 'cursor-trail';
+                    trail.style.left = e.clientX + 'px';
+                    trail.style.top = e.clientY + 'px';
+                    document.body.appendChild(trail);
+                    
+                    setTimeout(() => trail.remove(), 500);
+                }
+            });
+            
+            // Smooth cursor follow
+            function animateCursor() {
+                cursorX += (mouseX - cursorX) * 0.15;
+                cursorY += (mouseY - cursorY) * 0.15;
+                
+                cursor.style.left = cursorX - 17 + 'px';
+                cursor.style.top = cursorY - 17 + 'px';
+                
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+            
+            // Cursor hover effects
+            document.querySelectorAll('a, .skill-box').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(1.5)';
+                    cursor.style.background = 'radial-gradient(circle, rgba(255, 105, 180, 0.8) 0%, rgba(255, 182, 193, 0.5) 50%, transparent 70%)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    cursor.style.background = 'radial-gradient(circle, rgba(255, 105, 180, 0.6) 0%, rgba(255, 182, 193, 0.3) 50%, transparent 70%)';
+                });
+            });
+        }
+        
+        // Generate Floating Bows
+        function createBows() {
+            if (window.innerWidth < 480) return; // Reduce bows on mobile
+            
+            const bowEmojis = ['🎀', '🎀', '🎀'];
+            const container = document.body;
+            const bowCount = window.innerWidth < 768 ? 8 : 15;
+            
+            for (let i = 0; i < bowCount; i++) {
+                const bow = document.createElement('div');
+                bow.className = 'bow';
+                bow.textContent = bowEmojis[Math.floor(Math.random() * bowEmojis.length)];
+                bow.style.left = Math.random() * 100 + '%';
+                bow.style.top = Math.random() * 100 + '%';
+                bow.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(bow);
+            }
+        }
+        
+        createBows();
+        
+        // Skill boxes animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'scaleIn 0.6s ease forwards';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.skill-box').forEach(box => {
+            observer.observe(box);
+        });
+        
+        // Glass effect on scroll for skill boxes
+        function handleGlassEffect() {
+            const skillBoxes = document.querySelectorAll('.skill-box');
+            const windowHeight = window.innerHeight;
+            const triggerPoint = windowHeight * 0.6;
+            
+            skillBoxes.forEach(box => {
+                const boxTop = box.getBoundingClientRect().top;
+                
+                if (boxTop < triggerPoint && boxTop > -box.offsetHeight) {
+                    box.classList.add('glass-active');
+                } else {
+                    box.classList.remove('glass-active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', handleGlassEffect);
+        handleGlassEffect(); // Initial check
+        
+        // Click Effects on Skill Boxes
+        document.querySelectorAll('.skill-box').forEach(box => {
+            box.addEventListener('click', function(e) {
+                // Ripple Effect
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = e.clientX - rect.left - size/2 + 'px';
+                ripple.style.top = e.clientY - rect.top - size/2 + 'px';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+                
+                // Particle Explosion (reduced on mobile)
+                const colors = ['#FF69B4', '#FFB6C1', '#DDA0DD', '#B0E0E6', '#98FB98', '#FFDAB9'];
+                const emojis = ['✨', '💖', '🌸', '⭐', '💫', '🎀', '🌺'];
+                const particleCount = window.innerWidth < 768 ? 6 : 12;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    if (Math.random() > 0.5) {
+                        particle.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                        particle.style.fontSize = window.innerWidth < 768 ? '16px' : '20px';
+                    } else {
+                        particle.style.width = '8px';
+                        particle.style.height = '8px';
+                        particle.style.borderRadius = '50%';
+                        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    }
+                    
+                    particle.style.left = e.clientX + 'px';
+                    particle.style.top = e.clientY + 'px';
+                    
+                    const angle = (Math.PI * 2 * i) / particleCount;
+                    const velocity = window.innerWidth < 768 ? 60 + Math.random() * 60 : 100 + Math.random() * 100;
+                    const x = Math.cos(angle) * velocity;
+                    const y = Math.sin(angle) * velocity;
+                    
+                    particle.style.setProperty('--x', x + 'px');
+                    particle.style.setProperty('--y', y + 'px');
+                    
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 1000);
+                }
+                
+                // Box shake animation
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'shake 0.5s ease';
+                }, 10);
+            });
+        });
+        
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px) rotate(-3deg); }
+                75% { transform: translateX(5px) rotate(3deg); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                location.reload();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
